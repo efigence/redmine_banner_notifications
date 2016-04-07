@@ -1,0 +1,36 @@
+<h1>Banner notifications</h1>
+
+<table class="list">
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Hideable</th>
+      <th>Type</th>
+      <th>Project</th>
+      <th>Groups</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bannerss.each do |banner| %>
+      <tr class="banner-<%= banner.notification_type %>">
+        <td><%= banner.content %></td>
+        <td><%= banner.time_from.strftime('%F %R') %></td>
+        <td><%= banner.time_to.strftime('%F %R') %></td>
+        <td><%= banner.hideable %></td>
+        <td><%= banner.notification_type %></td>
+        <td><%= banner.project.try(:name) %></td>
+        <td><% banner.groups[1..-1].each do |gr| %><%= gr %>, <% end %></td>
+        <td>
+          <%= link_to edit_banner_path(banner) do %><img src="../images/edit.png" /><% end %>&nbsp;
+          <%= link_to banner_path(banner), method: :delete do %><img src="../images/delete.png" /><% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br><br>
+<%= link_to new_banner_path do %><img src="../images/add.png" /> Create banner<% end %>

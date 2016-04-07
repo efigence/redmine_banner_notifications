@@ -1,0 +1,30 @@
+<style media="screen">
+.banner-info-bottom, .banner-warning-bottom, .banner-error-bottom {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+  padding: 1px;
+  border: 1px solid #999;
+}
+.banner-info-bottom {
+  background-color: #d9edf7;
+}
+.banner-warning-bottom {
+  background-color: #fcf8e3;
+}
+.banner-error-bottom {
+  background-color: #f2dede;
+}
+.banner p {
+  padding: 0 20px 0 100px;
+}
+</style>
+
+<h1>Banner notifications</h1>
+
+<% @bannerss.each do |bann| %>
+  <div class="banner banner-<%= bann.notification_type %>-bottom">
+    <p>
+      <span style="text-align:center;"><%= raw(bann.content.gsub(/\n/, '<br>')) %></span>
+    </p>
+  </div>
+<% end %>

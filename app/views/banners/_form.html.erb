@@ -1,0 +1,65 @@
+<%= stylesheet_link_tag '/plugin_assets/redmine_banner_notifications/stylesheets/selectize.default.css' %>
+<%= javascript_include_tag '/plugin_assets/redmine_banner_notifications/javascripts/selectize' %>
+
+<%= labelled_form_for @banner, url: locals[:form_path] do |f| %>
+  <% if @banner.errors.any? %>
+    <div id="error_explanation">
+      <h4>
+        <%= pluralize(@banner.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h4>
+      <ul>
+        <% @banner.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.text_area :content, :rows => 8, :class => 'wiki-edit' %>
+  </p>
+
+  <p>
+    <%= f.select :notification_type, ['info', 'warning', 'error'] %>
+  </p>
+  
+  <p>
+    <%= f.check_box :hideable %>
+  </p>
+
+  <p>
+    <%= f.label :time_from, 'Time from' %><br>
+    <%= f.datetime_select :time_from, minute_step: 15 %>
+  </p>
+
+  <p>
+    <%= f.label :time_to, 'Time to' %><br>
+    <%= f.datetime_select :time_to, minute_step: 15 %>
+  </p>
+
+  <p>
+  </p>
+
+  <p>
+    <%= f.label :project_id %><br>
+    <%= f.collection_select :project_id, Project.all.sort, :id, :name, include_blank: ''  %>
+  </p>
+
+  <p>
+    <%= f.select(:groups, Group.all.sort.map { |gr| [gr.lastname, gr.lastname] }, {}, { multiple: true, class: 'selectize' }) %>
+  </p>
+
+  <p>
+    <%= f.submit %>&nbsp;
+    <%= link_to 'Cancel', banners_path %>
+  </p>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.selectize').selectize({
+      plugins: ['remove_button']
+    });
+  });
+</script>

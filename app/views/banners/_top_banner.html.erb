@@ -1,0 +1,68 @@
+<style media="screen">
+#top-menu a.banner-envelope {
+  padding-left: 20px;
+  background-image: url(../images/email_disabled.png);
+  background-repeat: no-repeat;
+}
+.banner-li {
+  display: inline-block;
+  width: 30%;
+  border: 1px solid #000;
+  padding: 10px 15px;
+}
+.banner-li:hover {
+  background-color: #f5f5f5;
+}
+.banner-info, .banner-warning, .banner-error {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 1px;
+  border-bottom: 1px solid #999;
+}
+.banner-info {
+  background-color: #d9edf7;
+}
+.banner-warning {
+  background-color: #fcf8e3;
+}
+.banner-error {
+  background-color: #f2dede;
+}
+.banner p {
+  padding: 0 20px 0 100px;
+}
+</style>
+
+<% if User.current.logged? %>
+  <% cache "my_banners_#{User.current.id}_#{BannerNotification.good_time}" do %>
+    <div id="banner_area">
+      <% @banners.each do |bann| %>
+        <div class="banner banner-<%= bann.notification_type %>" id="banner-<%= bann.id %>">
+          <p style="text-align:center;">
+            <% if bann.hideable %>
+              <span style="float:right;cursor:pointer;" class="close-banner-notif" data-banner-id="<%= bann.id %>">Close X</span>
+            <% end %>
+            <span style="text-align:center;"><%= raw(bann.content.gsub(/\n/, '<br>')) %></span>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+    $('#banner_area').insertAfter($('#top-menu'));
+
+    $('.close-banner-notif').on('click', function() {
+      thisBannerId = $(this).closest('.banner')[0];
+      $.ajax({
+        method: 'POST',
+        url: "<%= banners_close_path %>",
+        data: { user_id_banner: "<%= User.current.id %>", banner_id: $(this).data('banner-id') }
+      }).done(function(msg) {
+        thisBannerId.remove();
+      });
+    });
+  });
+</script>

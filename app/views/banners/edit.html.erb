@@ -1,0 +1,6 @@
+<h1>Edit banner notification</h1>
+
+<%= render 'form', locals: { form_path: banner_path(@banner) } %>
+
+<br><br>
+<%= link_to 'DELETE', banner_path(@banner), method: :delete %>

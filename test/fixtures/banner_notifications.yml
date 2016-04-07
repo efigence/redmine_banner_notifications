@@ -1,0 +1,7 @@
+banner_001:
+  id: 1
+  time_from: 2007-03-23 12:54:18 +01:00
+  time_to: 2050-03-23 12:54:18 +01:00
+  hideable: true
+  notification_type: "info"
+  content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."

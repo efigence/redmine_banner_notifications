@@ -1,0 +1,31 @@
+.banner-li {
+  display: inline-block;
+  width: 30%;
+  border: 1px solid #000;
+  padding: 10px 15px;
+}
+.banner-li:hover {
+  background-color: #f5f5f5;
+}
+
+.banner-info {
+  background-color: #d9edf7;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 1px;
+  border-bottom: 1px solid #999;
+}
+.banner-warning {
+  background-color: #fcf8e3;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 1px;
+  border-bottom: 1px solid #999;
+}
+.banner-error {
+  background-color: #f2dede;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 1px;
+  border-bottom: 1px solid #999;
+}
