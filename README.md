@@ -1,4 +1,4 @@
-# Redmine Banner Notifications plugin
+# Redmine Banner Notifications plugin [![Build Status](https://travis-ci.org/efigence/redmine_banner_notifications.svg?branch=master)](https://travis-ci.org/efigence/redmine_banner_notifications)
 
 Plugin allows admins and chosen people to create notifications, that will show as a banner to specific users.
 
@@ -29,7 +29,7 @@ Developed and tested on Redmine 3.0.7.
 ## License
 
   Redmine Banner Notifications plugin.
-  Copyright (C) 2015 Efigence S.A.
+  Copyright (C) 2016 Efigence S.A.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
