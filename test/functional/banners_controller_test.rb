@@ -12,7 +12,7 @@ class BannersControllerTest < Redmine::IntegrationTest
   def test_create
     log_user('admin', 'admin')
     assert_difference 'BannerNotification.count', 1 do
-      post banners_path, banner_notification: { content: 'asd',
+      post banners_path, banner_notification: { content: 'asdasdasdasd',
                                                 notification_type: 'info',
                                                 hideable: true,
                                                 time_from: Time.now - 2.days,
@@ -41,6 +41,7 @@ class BannersControllerTest < Redmine::IntegrationTest
 
   def test_show_all_normal
     log_user('jsmith', 'jsmith')
+    ClosedBanner.create(user_id: User.current.id, banner_notification_id: @banner.id)
     get banners_show_all_path
     assert_response 200
     assert assigns(:bannerss).include?(@banner)
