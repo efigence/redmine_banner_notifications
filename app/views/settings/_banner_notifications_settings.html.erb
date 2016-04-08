@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag '/plugin_assets/redmine_banner_notifications/stylesheets/selectize.default.css' %>
 <%= javascript_include_tag '/plugin_assets/redmine_banner_notifications/javascripts/selectize' %>
 <p>
-  <label><%= l('settings.allowed_groups_to_use_hamster') %></label>
+  <label><%= l('settings.allowed_users_to_use_banners') %></label>
     <%= select_tag "settings[banner_admins][]",
       options_from_collection_for_select(User.all.sort, 'id', 'name', @settings['banner_admins']
         ), :multiple => true, class: "selectize" %>

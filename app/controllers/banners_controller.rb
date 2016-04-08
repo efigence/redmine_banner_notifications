@@ -61,7 +61,7 @@ class BannersController < ApplicationController
   private
 
   def banner_params
-    params.require(:banner_notification).permit(:content, :time_from, :time_to, :hideable, :notification_type, :project_id, groups: [])
+    params.require(:banner_notification).permit(:content, :time_from, :time_to, :hideable, :notification_type, :project_id, :active, groups: [])
   end
 
   def auth_user

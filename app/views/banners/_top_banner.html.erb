@@ -1,49 +1,18 @@
-<style media="screen">
-#top-menu a.banner-envelope {
-  padding-left: 20px;
-  background-image: url(../images/email_disabled.png);
-  background-repeat: no-repeat;
-}
-.banner-li {
-  display: inline-block;
-  width: 30%;
-  border: 1px solid #000;
-  padding: 10px 15px;
-}
-.banner-li:hover {
-  background-color: #f5f5f5;
-}
-.banner-info, .banner-warning, .banner-error {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  padding: 1px;
-  border-bottom: 1px solid #999;
-}
-.banner-info {
-  background-color: #d9edf7;
-}
-.banner-warning {
-  background-color: #fcf8e3;
-}
-.banner-error {
-  background-color: #f2dede;
-}
-.banner p {
-  padding: 0 20px 0 100px;
-}
-</style>
+<%= stylesheet_link_tag '/plugin_assets/redmine_banner_notifications/stylesheets/banner_notifications.css' %>
 
 <% if User.current.logged? %>
   <% cache "my_banners_#{User.current.id}_#{BannerNotification.good_time}" do %>
     <div id="banner_area">
       <% @banners.each do |bann| %>
         <div class="banner banner-<%= bann.notification_type %>" id="banner-<%= bann.id %>">
-          <p style="text-align:center;">
+          <p>
             <% if bann.hideable %>
               <span style="float:right;cursor:pointer;" class="close-banner-notif" data-banner-id="<%= bann.id %>">Close X</span>
             <% end %>
-            <span style="text-align:center;"><%= raw(bann.content.gsub(/\n/, '<br>')) %></span>
           </p>
+          <div style="text-align:center;">
+            <%= textilizable bann.content, align: 'center' %>
+          </div>
         </div>
       <% end %>
     </div>

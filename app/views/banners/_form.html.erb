@@ -17,13 +17,18 @@
   <% end %>
 
   <p>
+    <%= f.check_box :active %>
+  </p>
+
+  <p>
     <%= f.text_area :content, :rows => 8, :class => 'wiki-edit' %>
+    <%= wikitoolbar_for "banner_notification_content" %>
   </p>
 
   <p>
     <%= f.select :notification_type, ['info', 'warning', 'error'] %>
   </p>
-  
+
   <p>
     <%= f.check_box :hideable %>
   </p>
@@ -42,8 +47,7 @@
   </p>
 
   <p>
-    <%= f.label :project_id %><br>
-    <%= f.collection_select :project_id, Project.all.sort, :id, :name, include_blank: ''  %>
+    <%= f.select(:project_id, Project.all.sort.map { |pr| [pr.name, pr.id] }, {}, { multiple: false, class: 'selectize' }) %>
   </p>
 
   <p>

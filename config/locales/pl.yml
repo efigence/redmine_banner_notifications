@@ -4,3 +4,5 @@ pl:
   field_hideable: Czy da się ukryć
   field_notification_type: 'Rodzaj banneru '
   field_groups: Grupy
+  settings:
+    allowed_users_to_use_banners: Użytkownicy którzy mogą zarządzać banerami

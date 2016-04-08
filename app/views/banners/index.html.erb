@@ -3,6 +3,7 @@
 <table class="list">
   <thead>
     <tr>
+      <th>Active</th>
       <th>Content</th>
       <th>From</th>
       <th>To</th>
@@ -16,7 +17,8 @@
   <tbody>
     <% @bannerss.each do |banner| %>
       <tr class="banner-<%= banner.notification_type %>">
-        <td><%= banner.content %></td>
+        <td><%= banner.active %></td>
+        <td><%= textilizable banner.content %></td>
         <td><%= banner.time_from.strftime('%F %R') %></td>
         <td><%= banner.time_to.strftime('%F %R') %></td>
         <td><%= banner.hideable %></td>

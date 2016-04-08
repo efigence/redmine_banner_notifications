@@ -4,3 +4,5 @@ en:
   field_hideable: Hideable
   field_notification_type: 'Banner type '
   field_groups: Groups
+  settings:
+    allowed_users_to_use_banners: Users allowed to manage banners
