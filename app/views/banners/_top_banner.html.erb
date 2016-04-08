@@ -4,7 +4,7 @@
   <% cache "my_banners_#{User.current.id}_#{BannerNotification.good_time}" do %>
     <div id="banner_area">
       <% @banners.each do |bann| %>
-        <div class="banner banner-<%= bann.notification_type %>" id="banner-<%= bann.id %>">
+        <div class="flash <%= bann.notification_type %>" id="banner-<%= bann.id %>">
           <p>
             <% if bann.hideable %>
               <span style="float:right;cursor:pointer;" class="close-banner-notif" data-banner-id="<%= bann.id %>">Close X</span>
@@ -21,7 +21,8 @@
 
 <script type="text/javascript">
   $(function() {
-    $('#banner_area').insertAfter($('#top-menu'));
+    // $('#banner_area').insertAfter($('#top-menu'));
+    $('#header').prepend($('#banner_area'));
 
     $('.close-banner-notif').on('click', function() {
       thisBannerId = $(this).closest('.banner')[0];

@@ -2,20 +2,21 @@ require 'banner_application_hooks'
 
 Redmine::Plugin.register :redmine_banner_notifications do
   name 'Redmine Banner Notifications plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
+  author 'Jan Lachowicz'
+  description 'Plugin allows admins and chosen people to create notifications, that will show as a banner to specific users.'
   version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  url 'https://github.com/efigence/redmine_banner_notifications'
+  author_url 'https://github.com/jafffmen'
 
   menu :top_menu,
        :banner_notifications, {controller: 'banners', action: 'index'},
        caption: 'Banners', :after => :help,
-       :if => proc { Setting.plugin_redmine_banner_notifications['banner_admins'].map(&:to_i).include?(User.current.try(:id)) }
+       :if => proc { Setting.plugin_redmine_banner_notifications['banner_admins'].map(&:to_i).include?(User.current.try(:id)) || User.current.admin? }
 
   menu :account_menu,
        :banner_envelope, {controller: 'banners', action: 'show_all'},
-       caption: '', first: true
+       caption: '', first: true,
+       :if => proc { User.current.logged? }
 
   settings default: { 'banner_admins' => [] }, partial: 'settings/banner_notifications_settings'
 

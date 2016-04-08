@@ -24,7 +24,7 @@
 <% @bannerss.each do |bann| %>
   <div class="banner banner-<%= bann.notification_type %>-bottom">
     <p>
-      <span style="text-align:center;"><%= raw(bann.content.gsub(/\n/, '<br>')) %></span>
+      <span style="text-align:center;"><%= textilizable bann.content %></span>
     </p>
   </div>
 <% end %>

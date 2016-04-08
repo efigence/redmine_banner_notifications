@@ -44,10 +44,7 @@
   </p>
 
   <p>
-  </p>
-
-  <p>
-    <%= f.select(:project_id, Project.all.sort.map { |pr| [pr.name, pr.id] }, {}, { multiple: false, class: 'selectize' }) %>
+    <%= f.select(:project_id, Project.all.sort.map { |pr| [pr.name, pr.id] }.unshift(nil), {}, { include_blank: true, multiple: false, class: 'selectize' }) %>
   </p>
 
   <p>
