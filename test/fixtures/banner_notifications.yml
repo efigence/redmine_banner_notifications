@@ -5,3 +5,4 @@ banner_001:
   hideable: true
   notification_type: "info"
   content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+  active: true
