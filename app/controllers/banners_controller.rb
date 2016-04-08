@@ -11,7 +11,9 @@ class BannersController < ApplicationController
   def show_all
     @bannerss = BannerNotification.good_time.select do |bann|
       if bann.groups == [''] || ((User.current.groups.map { |gr| gr.lastname }) & (bann.groups - [nil, ''])).size > 0 || bann.groups == []
-        bann if bann.project_id.nil? || bann.project.users.include?(User.current)
+        if bann.project_id.nil? || bann.project.users.include?(User.current)
+          bann if bann.closed_banners.find_by(user: User.current)
+        end
       end
     end
   end
